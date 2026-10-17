@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" width="1000" height="640" font-family="Segoe UI, DejaVu Sans, Arial, sans-serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3a3a38"/>
+    </marker>
+    <marker id="ard" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a8984"/>
+    </marker>
+    <style>
+      .t{font-size:13px;font-weight:700;fill:#0b0b0b}
+      .s{font-size:10.5px;fill:#3a3a38}
+      .l{font-size:10px;fill:#52514e;font-style:italic}
+      .agent{fill:#e3eefb;stroke:#2a78d6;stroke-width:1.6}
+      .tool{fill:#f1f0ec;stroke:#8a8984;stroke-width:1.2}
+      .env{fill:#e2f4ec;stroke:#1baf7a;stroke-width:1.6}
+      .llm{fill:#fdeee6;stroke:#eb6834;stroke-width:1.6}
+      .data{fill:#fff7e0;stroke:#c98500;stroke-width:1.2}
+      .base{fill:#fafaf8;stroke:#8a8984;stroke-width:1.2;stroke-dasharray:5 4}
+      .a{stroke:#3a3a38;stroke-width:1.4;fill:none;marker-end:url(#ar)}
+      .ad{stroke:#8a8984;stroke-width:1.3;fill:none;stroke-dasharray:5 4;marker-end:url(#ard)}
+      .g circle{fill:#d03b3b}
+      .g text{font-size:11px;font-weight:700;fill:#fff}
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1000" height="640" fill="#fcfcfb"/>
+
+  <!-- Inputs -->
+  <rect class="data" x="20" y="40" width="180" height="80" rx="8"/>
+  <text class="t" x="32" y="62">User / app requests</text>
+  <text class="s" x="32" y="80">natural language, e.g. "classify</text>
+  <text class="s" x="32" y="94">this 4 MB X-ray within 800 ms,</text>
+  <text class="s" x="32" y="108">keep it on-premise"</text>
+
+  <rect class="data" x="20" y="200" width="180" height="90" rx="8"/>
+  <text class="t" x="32" y="222">Alibaba v2018 trace</text>
+  <text class="s" x="32" y="240">batch_task: arrivals, CPU,</text>
+  <text class="s" x="32" y="254">memory, duration</text>
+  <text class="s" x="32" y="268">→ TaskSpec stream (work, MB,</text>
+  <text class="s" x="32" y="282">deadline, home edge)</text>
+
+  <!-- Agents -->
+  <rect class="agent" x="240" y="30" width="190" height="100" rx="10"/>
+  <text class="t" x="252" y="52">A1 NLP Interpretation</text>
+  <text class="s" x="252" y="71">LLM → TaskIntent JSON</text>
+  <text class="s" x="252" y="85">(type, MB, deadline, priority,</text>
+  <text class="s" x="252" y="99">location, count); schema-</text>
+  <text class="s" x="252" y="113">validated, rule-parser fallback</text>
+
+  <rect class="agent" x="450" y="30" width="190" height="100" rx="10"/>
+  <text class="t" x="462" y="52">A2 Prediction &amp;</text>
+  <text class="t" x="462" y="68">Forecasting</text>
+  <text class="s" x="462" y="87">Holt / EWMA over arrivals and</text>
+  <text class="s" x="462" y="101">WAN Mbps from get_system_state</text>
+  <text class="s" x="462" y="115">→ Forecast (10 s horizon)</text>
+  <g class="g"><circle cx="630" cy="40" r="13"/><text x="621" y="44">G2</text></g>
+
+  <rect class="agent" x="240" y="170" width="400" height="140" rx="10"/>
+  <text class="t" x="252" y="192">A3 Resource Allocation (Offloading) Agent</text>
+  <text class="s" x="252" y="212">per decision epoch (0.5 s) over the pending batch:</text>
+  <text class="s" x="252" y="230">1  estimate_placement(task, node) for every node</text>
+  <text class="s" x="252" y="246">2  get_forecast() and get_system_state()</text>
+  <text class="s" x="252" y="262">3  escalate ambiguous tasks (top-2 J within 15%) to the LLM</text>
+  <text class="s" x="252" y="278">4  validate reply (known task, candidate node) else greedy-J</text>
+  <text class="s" x="252" y="294">5  place_task → simulator; log rationale, tokens, latency</text>
+  <g class="g"><circle cx="630" cy="180" r="13"/><text x="621" y="184">G1</text></g>
+
+  <rect class="agent" x="240" y="350" width="400" height="80" rx="10"/>
+  <text class="t" x="252" y="372">A4 Observation &amp; Orchestration Agent</text>
+  <text class="s" x="252" y="391">every 2 s: get_system_state(); for nodes with backlog &gt; 2 s,</text>
+  <text class="s" x="252" y="405">move queued tasks whose finish time improves &gt; 20% after the</text>
+  <text class="s" x="252" y="419">migration transfer → migrate_task()</text>
+  <g class="g"><circle cx="630" cy="360" r="13"/><text x="621" y="364">G3</text></g>
+
+  <!-- LLM, tools, environment -->
+  <rect class="llm" x="680" y="30" width="300" height="100" rx="10"/>
+  <text class="t" x="692" y="52">LLM provider (Gemini API)</text>
+  <text class="s" x="692" y="71">gemini-3.5-flash-lite, temperature 0,</text>
+  <text class="s" x="692" y="85">JSON-schema constrained output;</text>
+  <text class="s" x="692" y="99">pacing, retries, model fallback,</text>
+  <text class="s" x="692" y="113">response cache, token/latency log</text>
+
+  <rect class="tool" x="680" y="170" width="300" height="140" rx="10"/>
+  <text class="t" x="692" y="192">Tool interfaces (typed contracts)</text>
+  <text class="s" x="692" y="212">estimate_placement → CandidateEstimate</text>
+  <text class="s" x="692" y="228">   (latency, energy, cost, J, meets_deadline)</text>
+  <text class="s" x="692" y="246">get_system_state → SystemState</text>
+  <text class="s" x="692" y="262">get_forecast → Forecast</text>
+  <text class="s" x="692" y="278">place_task → PlacementDecision</text>
+  <text class="s" x="692" y="294">migrate_task → MigrationAction</text>
+
+  <rect class="env" x="680" y="350" width="300" height="160" rx="10"/>
+  <text class="t" x="692" y="372">Trace-driven edge–cloud simulator</text>
+  <rect x="694" y="384" width="62" height="40" rx="5" fill="#fff" stroke="#1baf7a"/>
+  <text class="s" x="700" y="400">edge-0</text><text class="s" x="700" y="415">4c 2.0G</text>
+  <rect x="764" y="384" width="62" height="40" rx="5" fill="#fff" stroke="#1baf7a"/>
+  <text class="s" x="770" y="400">edge-1</text><text class="s" x="770" y="415">4c 2.4G</text>
+  <rect x="834" y="384" width="62" height="40" rx="5" fill="#fff" stroke="#1baf7a"/>
+  <text class="s" x="840" y="400">edge-2</text><text class="s" x="840" y="415">8c 1.8G</text>
+  <rect x="904" y="384" width="62" height="40" rx="5" fill="#fff" stroke="#1baf7a"/>
+  <text class="s" x="910" y="400">edge-3</text><text class="s" x="910" y="415">2c 2.2G</text>
+  <rect x="694" y="440" width="132" height="56" rx="5" fill="#fff" stroke="#1baf7a"/>
+  <text class="s" x="702" y="458">cloud-0: 64 cores</text>
+  <text class="s" x="702" y="472">3.0 GHz, $0.0425/</text>
+  <text class="s" x="702" y="486">core-hour</text>
+  <text class="s" x="840" y="452">FCFS core queues,</text>
+  <text class="s" x="840" y="466">metro links, WAN(t)</text>
+  <text class="s" x="840" y="480">diurnal + noise +</text>
+  <text class="s" x="840" y="494">outage injection</text>
+
+  <!-- State, baselines, metrics -->
+  <rect class="tool" x="20" y="470" width="200" height="130" rx="10"/>
+  <text class="t" x="32" y="492">Evaluation</text>
+  <text class="s" x="32" y="511">weighted cost J, mean / p95</text>
+  <text class="s" x="32" y="525">latency, deadline-miss rate,</text>
+  <text class="s" x="32" y="539">energy, USD, edge share,</text>
+  <text class="s" x="32" y="553">decision ms/task, LLM calls,</text>
+  <text class="s" x="32" y="567">tokens, fallback rate, LLM-</text>
+  <text class="s" x="32" y="581">overhead-adjusted miss rate</text>
+
+  <rect class="tool" x="240" y="470" width="190" height="130" rx="10"/>
+  <text class="t" x="252" y="492">State &amp; memory</text>
+  <text class="s" x="252" y="511">SystemState snapshot</text>
+  <text class="s" x="252" y="525">PlanView (per-core free</text>
+  <text class="s" x="252" y="539">times + provisional plan)</text>
+  <text class="s" x="252" y="553">arrival / WAN history</text>
+  <text class="s" x="252" y="567">decision trace (rationales)</text>
+  <text class="s" x="252" y="581">LLM response cache</text>
+
+  <rect class="base" x="450" y="470" width="190" height="130" rx="10"/>
+  <text class="t" x="462" y="492">Baselines (replace A3/A4)</text>
+  <text class="s" x="462" y="511">local-edge, all-cloud,</text>
+  <text class="s" x="462" y="525">random, round-robin,</text>
+  <text class="s" x="462" y="539">greedy-latency, greedy-J,</text>
+  <text class="s" x="462" y="553">batch MILP (optimisation),</text>
+  <text class="s" x="462" y="567">Double-DQN (base-paper-</text>
+  <text class="s" x="462" y="581">style DRL); same workload</text>
+
+  <!-- Arrows -->
+  <path class="a" d="M200,80 L238,80"/>
+  <path class="a" d="M335,130 L335,168"/>
+  <text class="l" x="342" y="152">TaskSpecs</text>
+  <path class="a" d="M200,245 L238,245"/>
+  <text class="l" x="204" y="238">tasks</text>
+  <path class="a" d="M545,130 L545,168"/>
+  <text class="l" x="497" y="152">Forecast</text>
+  <path class="a" style="marker-start:url(#ar)" d="M642,190 L660,190 L660,80 L678,80"/>
+  <text class="l" x="590" y="150">LLM call</text>
+  <path class="a" style="marker-start:url(#ar)" d="M642,250 L678,250"/>
+  <path class="a" style="marker-start:url(#ar)" d="M830,312 L830,348"/>
+  <text class="l" x="836" y="334">act / observe</text>
+  <path class="a" d="M642,380 L678,380"/>
+  <text class="l" x="644" y="374">migrate</text>
+  <path class="a" d="M678,410 L642,410"/>
+  <text class="l" x="644" y="424">state</text>
+  <path class="ad" d="M640,535 C665,535 665,500 678,500"/>
+  <path class="a" d="M830,510 L830,622 L120,622 L120,602"/>
+  <text class="l" x="470" y="617">per-task records → metrics</text>
+</svg>
