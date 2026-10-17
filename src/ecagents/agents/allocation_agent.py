@@ -17,7 +17,7 @@ import time
 from pydantic import BaseModel, Field
 
 from ..contracts import PlacementDecision
-from ..schedulers.heuristics import Scheduler
+from ..schedulers.heuristics import Scheduler, allowed
 from .forecast_agent import ForecastingAgent
 from .llm import LLMClient, to_prompt_json
 
@@ -46,13 +46,15 @@ class AllocationAgent(Scheduler):
 
     def __init__(self, llm: LLMClient | None = None, forecaster: ForecastingAgent | None = None,
                  margin: float = 0.15, top_k: int = 3, max_tasks_per_call: int = 12,
-                 max_calls: int | None = None):
+                 max_calls: int | None = None, min_gap_s: float = 0.0):
         super().__init__()
         self.llm = llm or LLMClient()
         self.forecaster = forecaster or ForecastingAgent()
         self.margin, self.top_k = margin, top_k
         self.max_tasks_per_call = max_tasks_per_call
         self.max_calls = max_calls
+        self.min_gap_s = min_gap_s          # simulated seconds between LLM calls (call budget pacing)
+        self._last_call_t = -1e9
         self.n_escalated = self.n_llm_ok = self.n_fallback = 0
         self.n_calls = 0
         self.llm_wall_s = 0.0
@@ -66,13 +68,11 @@ class AllocationAgent(Scheduler):
 
         out, ambiguous = {}, []
         for task in tasks:
-            cands = sorted(view.estimate_all(task), key=lambda c: c.weighted_cost)
-            if task.preferred_location in ("edge", "cloud"):
-                pref = [c for c in cands if c.tier == task.preferred_location]
-                cands = pref or cands
+            cands = sorted(allowed(task, view.estimate_all(task)), key=lambda c: c.weighted_cost)
             best = cands[0]
             close = len(cands) > 1 and cands[1].weighted_cost - best.weighted_cost <= self.margin * best.weighted_cost
-            budget_left = self.max_calls is None or self.n_calls < self.max_calls
+            budget_left = ((self.max_calls is None or self.n_calls < self.max_calls)
+                           and view.t - self._last_call_t >= self.min_gap_s)
             if close and budget_left and self.llm.available and len(ambiguous) < self.max_tasks_per_call:
                 ambiguous.append((task, cands[: self.top_k]))
             else:
@@ -101,6 +101,7 @@ class AllocationAgent(Scheduler):
                                for c in cands]} for t, cands in ambiguous],
         }
         self.n_escalated += len(ambiguous)
+        self._last_call_t = view.t
         t0 = time.perf_counter()
         resp = self.llm.generate_json(to_prompt_json(payload), LLMBatch, system=SYSTEM)
         call_s = time.perf_counter() - t0

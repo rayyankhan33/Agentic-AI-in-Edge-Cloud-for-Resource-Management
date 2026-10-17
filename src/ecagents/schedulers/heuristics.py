@@ -6,6 +6,14 @@ import numpy as np
 from ..contracts import PlacementDecision, TaskSpec
 
 
+def allowed(task: TaskSpec, cands: list) -> list:
+    """Honour a hard edge/cloud preference from the user's request when one exists."""
+    if task.preferred_location in ("edge", "cloud"):
+        keep = [c for c in cands if c.tier == task.preferred_location]
+        return keep or cands
+    return cands
+
+
 class Scheduler:
     """Places each task of a batch in arrival order, committing as it goes."""
 
@@ -71,7 +79,7 @@ class GreedyLatency(Scheduler):
     name = "greedy-latency"
 
     def decide(self, task, view):
-        return min(view.estimate_all(task), key=lambda c: c.est_latency_s).node_id
+        return min(allowed(task, view.estimate_all(task)), key=lambda c: c.est_latency_s).node_id
 
 
 class GreedyWeighted(Scheduler):
@@ -80,4 +88,4 @@ class GreedyWeighted(Scheduler):
     name = "greedy-weighted"
 
     def decide(self, task, view):
-        return min(view.estimate_all(task), key=lambda c: c.weighted_cost).node_id
+        return min(allowed(task, view.estimate_all(task)), key=lambda c: c.weighted_cost).node_id
