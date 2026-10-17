@@ -1,0 +1,48 @@
+# Default scenario: 4 edge sites + 1 cloud region, driven by the Alibaba 2018 batch trace.
+seed: 42
+
+topology:
+  edges:
+    - {name: edge-0, cores: 4, freq_ghz: 2.0, p_idle_w: 6.0, p_core_w: 4.0}
+    - {name: edge-1, cores: 4, freq_ghz: 2.4, p_idle_w: 6.0, p_core_w: 4.5}
+    - {name: edge-2, cores: 8, freq_ghz: 1.8, p_idle_w: 9.0, p_core_w: 3.5}
+    - {name: edge-3, cores: 2, freq_ghz: 2.2, p_idle_w: 4.0, p_core_w: 4.0}
+  cloud:
+    name: cloud-0
+    cores: 64
+    freq_ghz: 3.0
+    p_idle_w: 0.0          # idle power is the provider's problem, not ours
+    p_core_w: 12.0         # per busy core incl. PUE
+    price_core_hour: 0.0425
+
+network:
+  access_mbps: 100.0       # device -> its edge
+  access_rtt_ms: 5.0
+  metro_mbps: 200.0        # edge <-> edge
+  metro_rtt_ms: 4.0
+  wan_mbps: 40.0           # edge <-> cloud, mean
+  wan_rtt_ms: 60.0
+  wan_diurnal_amp: 0.35    # bandwidth dips by up to 35% at peak hours
+  wan_noise: 0.10          # AR(1) noise std (fraction of mean)
+  p_tx_edge_w: 1.0         # transmission power on edge links
+  p_tx_wan_w: 4.0          # transmission power on WAN links
+  egress_usd_per_gb: 0.09
+
+pricing:
+  electricity_usd_per_kwh: 0.20
+
+objective:                  # J = w1*T/T_ref + w2*E/E_ref + w3*F/F_ref (+ miss penalty)
+  w_latency: 0.5
+  w_energy: 0.25
+  w_cost: 0.25
+  miss_penalty: 1.0
+
+trace:
+  processed_csv: data/processed/alibaba2018_tasks_sample.csv
+  target_rate: 6.0          # tasks/s after time compression
+  target_load_ghz: 45.0     # mean offered load; edge capacity is 36.4 GHz, cloud 192 GHz
+  median_input_mb: 2.0
+
+sim:
+  epoch_s: 0.5              # schedulers decide once per epoch on the pending batch
+  orchestrator_period_s: 2.0
