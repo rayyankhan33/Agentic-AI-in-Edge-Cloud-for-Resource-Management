@@ -21,14 +21,17 @@ Fields:
   ml_inference (running a trained model on images, text or audio), batch_analytics
   (reports, ETL, aggregation over logs or large datasets, training), iot_aggregation
   (sensor/telemetry readings), web_request (API calls, page or small query).
-- input_size_mb: data that must be uploaded, in megabytes (1 GB = 1024 MB, 1 KB = 1/1024 MB).
+- input_size_mb: data uploaded by ONE task, in megabytes (1 GB = 1024 MB, 1 KB = 1/1024 MB).
+  When the request has several items ("12 notes of 1.5 MB each"), give the per-item size (1.5)
+  and put the number of items in count; when only a total is given for one job, use the total.
 - deadline_ms: the latest acceptable completion time in milliseconds. "real-time" with no number
   means 100 ms; "within a minute" means 60000; if no time constraint is given use 3600000.
 - priority: high if urgent, safety-critical or explicitly high; low if it says whenever, no rush,
   background or low priority; otherwise normal.
 - preferred_location: edge if the user requires data to stay local/on-premise/near the device,
   cloud if they ask for the cloud; otherwise any.
-- count: how many independent tasks of this kind (default 1).
+- count: how many independent tasks of this kind (default 1). A single job over many records
+  (e.g. "200 tweets, 300 KB in total") is one task.
 - max_cost_usd: only if the user states a budget, else null.
 Return only the JSON object."""
 
