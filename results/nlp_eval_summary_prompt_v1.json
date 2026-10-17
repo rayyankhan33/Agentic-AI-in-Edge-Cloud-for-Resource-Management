@@ -1,0 +1,37 @@
+{
+  "per_parser": [
+    {
+      "parser": "nlp-llm",
+      "task_type": 1.0,
+      "input_size_mb": 0.8,
+      "deadline_ms": 0.95,
+      "priority": 0.925,
+      "preferred_location": 0.975,
+      "count": 0.975,
+      "exact": 0.65,
+      "n": 40
+    },
+    {
+      "parser": "nlp-rules",
+      "task_type": 0.8,
+      "input_size_mb": 1.0,
+      "deadline_ms": 0.975,
+      "priority": 1.0,
+      "preferred_location": 0.95,
+      "count": 0.8,
+      "exact": 0.55,
+      "n": 40
+    }
+  ],
+  "llm": {
+    "calls": 40,
+    "cache_hits": 0,
+    "failures": 1,
+    "prompt_tokens": 13795,
+    "output_tokens": 3234,
+    "mean_latency_s": 1.04162790752016,
+    "p95_latency_s": 1.227829100098461
+  },
+  "llm_fallbacks": 0,
+  "model": "gemini-3.5-flash-lite"
+}

@@ -1,0 +1,74 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "llm": {
+    "calls": 169,
+    "cache_hits": 0,
+    "failures": 4,
+    "prompt_tokens": 149166,
+    "output_tokens": 23931,
+    "mean_latency_s": 1.162933052666265,
+    "p95_latency_s": 1.6826181998476386
+  },
+  "nlp_parsed_requests": [
+    {
+      "request": "Classify this 4 MB X-ray image with the pneumonia model; the result must come back in under 800 ms and the image must stay on-premise.",
+      "intent": {
+        "task_type": "ml_inference",
+        "input_size_mb": 4.0,
+        "deadline_ms": 800.0,
+        "priority": "normal",
+        "preferred_location": "edge",
+        "count": 1,
+        "max_cost_usd": null
+      }
+    },
+    {
+      "request": "Run object detection on 30 MB of CCTV footage from gate 3 within 2 seconds, it is urgent.",
+      "intent": {
+        "task_type": "video_analytics",
+        "input_size_mb": 30.0,
+        "deadline_ms": 2000.0,
+        "priority": "high",
+        "preferred_location": "any",
+        "count": 1,
+        "max_cost_usd": null
+      }
+    },
+    {
+      "request": "Transcribe 12 voice notes of 1.5 MB each using the speech model, finish within a minute.",
+      "intent": {
+        "task_type": "ml_inference",
+        "input_size_mb": 1.5,
+        "deadline_ms": 60000.0,
+        "priority": "normal",
+        "preferred_location": "any",
+        "count": 12,
+        "max_cost_usd": null
+      }
+    },
+    {
+      "request": "Retrain the demand forecasting model on the 800 MB sales dataset in the cloud, low priority.",
+      "intent": {
+        "task_type": "batch_analytics",
+        "input_size_mb": 800.0,
+        "deadline_ms": 3600000.0,
+        "priority": "low",
+        "preferred_location": "cloud",
+        "count": 1,
+        "max_cost_usd": null
+      }
+    },
+    {
+      "request": "Detect helmets in 3 frames (2 MB each) from the construction site camera; high priority, under 1.5 s.",
+      "intent": {
+        "task_type": "video_analytics",
+        "input_size_mb": 2.0,
+        "deadline_ms": 1500.0,
+        "priority": "high",
+        "preferred_location": "any",
+        "count": 3,
+        "max_cost_usd": null
+      }
+    }
+  ]
+}

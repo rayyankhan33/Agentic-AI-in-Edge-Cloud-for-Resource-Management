@@ -1,0 +1,1 @@
+{"task_type":"ml_inference","input_size_mb":18.0,"deadline_ms":60000.0,"priority":"normal","preferred_location":"any","count":12,"max_cost_usd":null}

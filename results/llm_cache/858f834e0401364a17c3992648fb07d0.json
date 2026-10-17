@@ -1,0 +1,1 @@
+{"decisions":[{"task_id":305,"node_id":0,"reason":"Selected edge node 0 as it provides the lowest weighted cost J while meeting the deadline."},{"task_id":307,"node_id":0,"reason":"Selected edge node 0 due to lowest weighted cost J and adequate performance for IoT aggregation."}]}

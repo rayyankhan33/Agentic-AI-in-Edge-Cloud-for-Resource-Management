@@ -1,0 +1,1 @@
+{"task_type":"batch_analytics","input_size_mb":900.0,"deadline_ms":14400000.0,"priority":"normal","preferred_location":"edge","count":1,"max_cost_usd":null}

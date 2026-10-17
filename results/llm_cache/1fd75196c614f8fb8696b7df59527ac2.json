@@ -1,0 +1,1 @@
+{"decisions":[{"task_id":281,"node_id":3,"reason":"Node 3 has the lowest weighted cost and meets the deadline."},{"task_id":282,"node_id":3,"reason":"Node 3 offers the best weighted cost among candidates and satisfies the deadline."}]}

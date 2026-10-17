@@ -1,0 +1,18 @@
+LLM available: True (model gemini-3.5-flash-lite)
+normal     greedy-weighted        J 5.024 lat 5.179 miss 0.020 calls 0 fallback 0.00 mig 0
+normal     greedy-weighted+orch   J 5.011 lat 5.046 miss 0.022 calls 0 fallback 0.00 mig 39
+normal     agent-llm              J 5.069 lat 5.318 miss 0.026 calls 40 fallback 0.00 mig 0
+normal     agent-llm+orch         J 5.030 lat 5.084 miss 0.021 calls 40 fallback 0.00 mig 58
+wan-outage greedy-weighted        J 6.089 lat 6.793 miss 0.098 calls 0 fallback 0.00 mig 0
+wan-outage greedy-weighted+orch   J 6.080 lat 6.739 miss 0.101 calls 0 fallback 0.00 mig 13
+wan-outage agent-llm              J 6.135 lat 6.916 miss 0.108 calls 40 fallback 0.01 mig 0
+wan-outage agent-llm+orch         J 6.086 lat 6.759 miss 0.099 calls 40 fallback 0.00 mig 22
+{
+  "calls": 169,
+  "cache_hits": 0,
+  "failures": 4,
+  "prompt_tokens": 149166,
+  "output_tokens": 23931,
+  "mean_latency_s": 1.162933052666265,
+  "p95_latency_s": 1.6826181998476386
+}

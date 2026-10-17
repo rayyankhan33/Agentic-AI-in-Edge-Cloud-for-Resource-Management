@@ -1,0 +1,102 @@
+C:\Users\Rayyan Khan\Desktop\Agentic AI Paper\edge-cloud-agents\src\ecagents\schedulers\drl.py:122: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:839.)
+  return float(loss)
+  drl ep  0 offset  5000 J  19.365 miss 0.490 eps 0.47 loss 1.000
+  drl ep  1 offset  8000 J   3.602 miss 0.215 eps 0.22 loss 1.259
+  drl ep  2 offset 11000 J   2.395 miss 0.121 eps 0.11 loss 1.256
+  drl ep  3 offset 14000 J   2.555 miss 0.142 eps 0.05 loss 1.922
+  drl ep  4 offset 26000 J   2.921 miss 0.021 eps 0.05 loss 2.017
+  drl ep  5 offset 29000 J   2.348 miss 0.124 eps 0.05 loss 2.117
+  drl ep  6 offset 32000 J   1.858 miss 0.035 eps 0.05 loss 2.458
+  drl ep  7 offset 35000 J   2.108 miss 0.080 eps 0.05 loss 2.251
+  drl ep  8 offset  5000 J   2.156 miss 0.025 eps 0.05 loss 2.354
+  drl ep  9 offset  8000 J   2.312 miss 0.078 eps 0.05 loss 2.435
+  drl ep 10 offset 11000 J   2.109 miss 0.042 eps 0.05 loss 2.429
+  drl ep 11 offset 14000 J   2.193 miss 0.045 eps 0.05 loss 2.623
+  drl ep 12 offset 26000 J   3.092 miss 0.015 eps 0.05 loss 3.072
+  drl ep 13 offset 29000 J   2.279 miss 0.053 eps 0.05 loss 3.003
+  drl ep 14 offset 32000 J   1.909 miss 0.017 eps 0.05 loss 2.827
+  drl ep 15 offset 35000 J   2.173 miss 0.051 eps 0.05 loss 2.887
+  drl ep 16 offset  5000 J   2.117 miss 0.015 eps 0.05 loss 2.958
+  drl ep 17 offset  8000 J   2.192 miss 0.046 eps 0.05 loss 3.428
+  drl ep 18 offset 11000 J   1.914 miss 0.006 eps 0.05 loss 3.340
+  drl ep 19 offset 14000 J   2.229 miss 0.043 eps 0.05 loss 3.106
+  drl ep 20 offset 26000 J   3.522 miss 0.114 eps 0.05 loss 3.558
+  drl ep 21 offset 29000 J   2.140 miss 0.043 eps 0.05 loss 3.292
+  drl ep 22 offset 32000 J   1.945 miss 0.039 eps 0.05 loss 3.285
+  drl ep 23 offset 35000 J   2.294 miss 0.068 eps 0.05 loss 3.287
+DRL training took 321s
+normal     seg     0 local-edge             J   50.097 lat  147.626 p95  472.244 miss 0.708 E   44.2kJ $0.002 edge 1.00
+normal     seg     0 all-cloud              J    4.116 lat    5.688 p95   22.093 miss 0.094 E  103.3kJ $0.180 edge 0.00
+normal     seg     0 random                 J   42.146 lat  123.257 p95  510.991 miss 0.531 E   54.8kJ $0.036 edge 0.80
+normal     seg     0 round-robin            J   34.234 lat   99.089 p95  346.324 miss 0.556 E   56.3kJ $0.039 edge 0.80
+normal     seg     0 greedy-latency         J    3.011 lat    4.053 p95   11.096 miss 0.018 E   84.5kJ $0.111 edge 0.68
+normal     seg     0 greedy-weighted        J    2.943 lat    4.759 p95   16.311 miss 0.009 E   71.5kJ $0.080 edge 0.66
+normal     seg     0 batch-milp             J    3.248 lat    5.626 p95   25.396 miss 0.052 E   71.0kJ $0.074 edge 0.79
+normal     seg     0 drl-ddqn               J    3.553 lat    6.292 p95   25.734 miss 0.117 E   72.2kJ $0.075 edge 0.73
+normal     seg     0 greedy-weighted+orch   J    2.897 lat    4.449 p95   12.153 miss 0.011 E   74.0kJ $0.085 edge 0.75
+normal     seg 20000 local-edge             J   27.063 lat  127.238 p95  564.143 miss 0.779 E   43.7kJ $0.002 edge 1.00
+normal     seg 20000 all-cloud              J    2.065 lat    3.903 p95    9.986 miss 0.000 E  100.1kJ $0.159 edge 0.00
+normal     seg 20000 random                 J   16.220 lat   74.676 p95  411.429 miss 0.451 E   55.1kJ $0.034 edge 0.80
+normal     seg 20000 round-robin            J   14.215 lat   64.773 p95  367.152 miss 0.450 E   55.8kJ $0.035 edge 0.80
+normal     seg 20000 greedy-latency         J    1.689 lat    3.715 p95    9.967 miss 0.000 E   79.7kJ $0.091 edge 0.60
+normal     seg 20000 greedy-weighted        J    1.713 lat    5.359 p95   15.730 miss 0.001 E   57.3kJ $0.042 edge 0.64
+normal     seg 20000 batch-milp             J    1.804 lat    5.640 p95   17.032 miss 0.040 E   57.5kJ $0.040 edge 0.71
+normal     seg 20000 drl-ddqn               J    2.026 lat    6.235 p95   17.975 miss 0.090 E   61.0kJ $0.048 edge 0.66
+normal     seg 20000 greedy-weighted+orch   J    1.591 lat    4.567 p95   12.500 miss 0.002 E   60.6kJ $0.046 edge 0.77
+normal     seg 40000 local-edge             J   30.457 lat  164.238 p95  635.680 miss 0.760 E   43.6kJ $0.002 edge 1.00
+normal     seg 40000 all-cloud              J    1.765 lat    3.781 p95    8.072 miss 0.000 E   98.9kJ $0.150 edge 0.00
+normal     seg 40000 random                 J   12.006 lat   61.752 p95  315.041 miss 0.458 E   55.9kJ $0.034 edge 0.80
+normal     seg 40000 round-robin            J   12.671 lat   65.533 p95  351.044 miss 0.465 E   54.5kJ $0.031 edge 0.80
+normal     seg 40000 greedy-latency         J    1.503 lat    3.632 p95    8.072 miss 0.000 E   82.5kJ $0.097 edge 0.48
+normal     seg 40000 greedy-weighted        J    1.494 lat    5.130 p95   13.114 miss 0.003 E   59.8kJ $0.048 edge 0.59
+normal     seg 40000 batch-milp             J    1.593 lat    5.446 p95   13.022 miss 0.048 E   60.2kJ $0.045 edge 0.67
+normal     seg 40000 drl-ddqn               J    1.765 lat    6.253 p95   17.334 miss 0.073 E   60.0kJ $0.047 edge 0.62
+normal     seg 40000 greedy-weighted+orch   J    1.412 lat    4.456 p95   10.544 miss 0.003 E   63.4kJ $0.053 edge 0.68
+wan-outage seg     0 local-edge             J   50.097 lat  147.626 p95  472.244 miss 0.708 E   44.2kJ $0.002 edge 1.00
+wan-outage seg     0 all-cloud              J    4.883 lat    6.876 p95   25.918 miss 0.250 E  116.9kJ $0.180 edge 0.00
+wan-outage seg     0 random                 J   42.312 lat  123.517 p95  510.991 miss 0.563 E   57.8kJ $0.036 edge 0.80
+wan-outage seg     0 round-robin            J   34.386 lat   99.326 p95  346.324 miss 0.587 E   59.0kJ $0.039 edge 0.80
+wan-outage seg     0 greedy-latency         J    3.082 lat    4.386 p95   11.331 miss 0.042 E   82.3kJ $0.101 edge 0.71
+wan-outage seg     0 greedy-weighted        J    3.093 lat    5.098 p95   17.306 miss 0.054 E   71.6kJ $0.076 edge 0.67
+wan-outage seg     0 batch-milp             J    3.470 lat    6.193 p95   30.157 miss 0.109 E   70.6kJ $0.069 edge 0.79
+wan-outage seg     0 drl-ddqn               J    3.733 lat    6.463 p95   26.029 miss 0.103 E   79.4kJ $0.083 edge 0.76
+wan-outage seg     0 greedy-weighted+orch   J    3.047 lat    4.857 p95   13.512 miss 0.057 E   73.3kJ $0.078 edge 0.75
+wan-outage seg 20000 local-edge             J   27.063 lat  127.238 p95  564.143 miss 0.779 E   43.7kJ $0.002 edge 1.00
+wan-outage seg 20000 all-cloud              J    2.639 lat    5.228 p95   13.583 miss 0.157 E  116.1kJ $0.159 edge 0.00
+wan-outage seg 20000 random                 J   16.328 lat   74.924 p95  411.429 miss 0.481 E   58.1kJ $0.034 edge 0.80
+wan-outage seg 20000 round-robin            J   14.326 lat   65.034 p95  367.152 miss 0.480 E   59.0kJ $0.035 edge 0.80
+wan-outage seg 20000 greedy-latency         J    1.756 lat    4.249 p95   11.121 miss 0.033 E   75.1kJ $0.076 edge 0.65
+wan-outage seg 20000 greedy-weighted        J    1.976 lat    6.140 p95   16.239 miss 0.106 E   58.0kJ $0.039 edge 0.68
+wan-outage seg 20000 batch-milp             J    2.046 lat    6.426 p95   18.015 miss 0.122 E   58.0kJ $0.037 edge 0.72
+wan-outage seg 20000 drl-ddqn               J    2.389 lat    7.544 p95   20.658 miss 0.173 E   62.4kJ $0.048 edge 0.69
+wan-outage seg 20000 greedy-weighted+orch   J    1.795 lat    5.237 p95   13.495 miss 0.076 E   60.8kJ $0.042 edge 0.78
+wan-outage seg 40000 local-edge             J   30.457 lat  164.238 p95  635.680 miss 0.760 E   43.6kJ $0.002 edge 1.00
+wan-outage seg 40000 all-cloud              J    2.097 lat    4.764 p95   10.709 miss 0.061 E  110.8kJ $0.150 edge 0.00
+wan-outage seg 40000 random                 J   12.070 lat   61.948 p95  315.041 miss 0.468 E   58.3kJ $0.034 edge 0.80
+wan-outage seg 40000 round-robin            J   12.737 lat   65.730 p95  351.044 miss 0.476 E   56.9kJ $0.031 edge 0.80
+wan-outage seg 40000 greedy-latency         J    1.500 lat    3.961 p95    9.099 miss 0.010 E   77.3kJ $0.082 edge 0.57
+wan-outage seg 40000 greedy-weighted        J    1.584 lat    5.515 p95   14.053 miss 0.026 E   60.1kJ $0.046 edge 0.61
+wan-outage seg 40000 batch-milp             J    1.686 lat    5.825 p95   14.678 miss 0.074 E   60.2kJ $0.044 edge 0.67
+wan-outage seg 40000 drl-ddqn               J    2.154 lat    7.936 p95   22.290 miss 0.162 E   60.3kJ $0.046 edge 0.63
+wan-outage seg 40000 greedy-weighted+orch   J    1.469 lat    4.771 p95   11.344 miss 0.019 E   62.5kJ $0.048 edge 0.71
+                                 mean_weighted_cost  mean_latency_s  p95_latency_s  deadline_miss_rate  total_energy_kj  total_cost_usd  edge_share  decision_ms_per_task  migrations
+condition  scheduler                                                                                                                                                                 
+normal     all-cloud                         2.6489          4.4574        13.3836              0.0313         100.7740          0.1629      0.0000                0.0039      0.0000
+           batch-milp                        2.2150          5.5708        18.4836              0.0463          62.8997          0.0530      0.7227                1.0159      0.0000
+           drl-ddqn                          2.4481          6.2599        20.3479              0.0936          64.3918          0.0566      0.6737                0.3784      0.0000
+           greedy-latency                    2.0678          3.8001         9.7115              0.0060          82.2221          0.0995      0.5857                0.0424      0.0000
+           greedy-weighted                   2.0500          5.0825        15.0518              0.0043          62.8726          0.0568      0.6306                0.0409      0.0000
+           greedy-weighted+orch              1.9666          4.4908        11.7323              0.0054          65.9959          0.0613      0.7323                0.0407    373.0000
+           local-edge                       35.8722        146.3673       557.3555              0.7489          43.8116          0.0024      1.0000                0.0035      0.0000
+           random                           23.4575         86.5618       412.4872              0.4801          55.2827          0.0344      0.7970                0.0087      0.0000
+           round-robin                      20.3734         76.4651       354.8397              0.4904          55.5245          0.0349      0.8000                0.0043      0.0000
+wan-outage all-cloud                         3.2065          5.6226        16.7367              0.1561         114.6041          0.1629      0.0000                0.0046      0.0000
+           batch-milp                        2.4007          6.1479        20.9500              0.1017          62.9414          0.0502      0.7288                1.0836      0.0000
+           drl-ddqn                          2.7590          7.3144        22.9925              0.1461          67.3923          0.0589      0.6958                0.4085      0.0000
+           greedy-latency                    2.1127          4.1985        10.5169              0.0284          78.2098          0.0861      0.6422                0.0357      0.0000
+           greedy-weighted                   2.2174          5.5844        15.8661              0.0620          63.2704          0.0537      0.6524                0.0370      0.0000
+           greedy-weighted+orch              2.1035          4.9550        12.7834              0.0506          65.5321          0.0563      0.7440                0.0445    334.6667
+           local-edge                       35.8722        146.3673       557.3555              0.7489          43.8116          0.0024      1.0000                0.0036      0.0000
+           random                           23.5702         86.7962       412.4872              0.5041          58.0736          0.0344      0.7970                0.0087      0.0000
+           round-robin                      20.4833         76.6966       354.8397              0.5142          58.2769          0.0349      0.8000                0.0045      0.0000
